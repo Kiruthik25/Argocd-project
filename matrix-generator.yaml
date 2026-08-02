@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: app1-matrix-clusters
+  name: matrix-clusters
   namespace: argocd
 spec:
   goTemplate: true
@@ -13,7 +13,7 @@ spec:
         generators:
           # Dimension 1: environments from Git
           - git:
-              repoURL: https://github.com/CloudWithVarJosh/app1-config.git
+              repoURL: https://github.com/Kiruthik25/Argocd-project.git
               revision: main
               directories:
                 - path: "*"
@@ -24,22 +24,22 @@ spec:
                 - region: mumbai
                   clusterName: in-cluster
                 - region: nvirginia
-                  clusterName: varun.joshi@cwvj-nvirginia.us-east-1.eksctl.io
+                  clusterName: https://github.com/Kiruthik25/Argocd-project.git
 
   template:
     metadata:
-      name: "app1-{{.path.basename}}-{{.region}}"
+      name: "app-{{.path.basename}}-{{.region}}"
     spec:
       project: default
 
       source:
-        repoURL: https://github.com/CloudWithVarJosh/app1-config.git
+        repoURL: https://github.com/Kiruthik25/Argocd-project.git
         targetRevision: main
         path: "{{.path.basename}}/manifests"
 
       destination:
         name: "{{.clusterName}}"
-        namespace: "app1-{{.path.basename}}-ns"
+        namespace: "app-{{.path.basename}}-ns"
 
       syncPolicy:
         automated:
