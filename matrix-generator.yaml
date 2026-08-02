@@ -22,9 +22,9 @@ spec:
           - list:
               elements:
                 - region: mumbai
-                  clusterName: in-cluster
+                  clusterName: mumbai-dev
                 - region: nvirginia
-                  clusterName: https://github.com/Kiruthik25/Argocd-project.git
+                  clusterName: us-prod
 
   template:
     metadata:
